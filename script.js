@@ -223,7 +223,6 @@ const adds = [{
     note: 5
 }];
 
-
 var keyboard = [];
 
 const notes = [
@@ -284,7 +283,7 @@ function generateChord() {
     chord.add = null;
     chord.sus = null;
     if (randomBoolean(10)) {
-        chord.add = adds[random(0, adds.length - 1)];
+        chord.add = adds.getRandom();
         if (chord.notes.includes(chord.add.note)) {
             chord.add = null;
         } else {
@@ -375,6 +374,7 @@ function onMIDIMessage(event) {
     
     if (down) {
         keyboard.push(key);
+        console.log(Math.min.apply(Math, keyboard));
         var played = true;
         for (var n of chord.notes) {
             var notFound = true;
